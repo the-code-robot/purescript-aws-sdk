@@ -1,10 +1,11 @@
 "use strict"
 
-const CloudWatch = require('aws-sdk/clients/cloudwatch')
+import CloudWatch from 'aws-sdk/clients/cloudwatch';
 
+export function newCloudWatch(params) {
+  return () => new CloudWatch(params);
+}
 
-exports.newCloudWatch = (params) =>
-  () => new CloudWatch(params)
-
-exports.getMetricStatisticsImpl = (cw, p) =>
-  () => cw.getMetricStatistics(p).promise().then(JSON.stringify)
+export function getMetricStatisticsImpl(cw, p) {
+  return () => cw.getMetricStatistics(p).promise().then(JSON.stringify);
+}

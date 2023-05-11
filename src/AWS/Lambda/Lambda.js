@@ -1,9 +1,11 @@
 "use strict"
 
-var AWS = require('aws-sdk')
+import AWS from 'aws-sdk';
 
-exports.newLambda = (params) =>
-  () => new AWS.Lambda(params)
+export function newLambda(params) {
+  return () => new AWS.Lambda(params);
+}
 
-exports.invokeImpl = (lambda, params) =>
-  () => lambda.invoke(params).promise()
+export function invokeImpl(lambda, params) {
+  return () => lambda.invoke(params).promise();
+}

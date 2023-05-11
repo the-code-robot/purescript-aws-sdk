@@ -1,24 +1,31 @@
 "use strict"
 
-const { CloudWatchLogs } = require('aws-sdk')
+import {CloudWatchLogs} from 'aws-sdk';
 
-exports.newCloudWatchLogs = (params) =>
-  () => new CloudWatchLogs(params)
+export function newCloudWatchLogs(params) {
+  return () => new CloudWatchLogs(params);
+}
 
-exports.describeLogGroupsImpl = (cw, params) =>
-  () => cw.describeLogGroups(params).promise()
+export function describeLogGroupsImpl(cw, params) {
+  return () => cw.describeLogGroups(params).promise();
+}
 
-exports.describeLogStreamsImpl = (cw, params) =>
-  () => cw.describeLogStreams(params).promise()
+export function describeLogStreamsImpl(cw, params) {
+  return () => cw.describeLogStreams(params).promise();
+}
 
-exports.putRetentionPolicyImpl = (cw, groupName, retention) =>
-  () => cw.putRetentionPolicy({ logGroupName: groupName, retentionInDays: retention }).promise()
+export function putRetentionPolicyImpl(cw, groupName, retention) {
+  return () => cw.putRetentionPolicy({ logGroupName: groupName, retentionInDays: retention }).promise();
+}
 
-exports.deleteRetentionPolicyImpl = (cw, groupName) =>
-  () => cw.deleteRetentionPolicy({ logGroupName: groupName }).promise()
+export function deleteRetentionPolicyImpl(cw, groupName) {
+  return () => cw.deleteRetentionPolicy({ logGroupName: groupName }).promise();
+}
 
-exports.createExportTaskImpl = (cw, destination, from, groupName, to) =>
-  () => cw.createExportTask({ destination: destination, from: from, logGroupName: groupName, to: to }).promise()
+export function createExportTaskImpl(cw, destination, from, groupName, to) {
+  return () => cw.createExportTask({ destination: destination, from: from, logGroupName: groupName, to: to }).promise();
+}
 
-exports.listTagsLogGroupImpl = (cw, groupName) =>
-  () => cw.listTagsLogGroup({ logGroupName: groupName }).promise()
+export function listTagsLogGroupImpl(cw, groupName) {
+  return () => cw.listTagsLogGroup({ logGroupName: groupName }).promise();
+}

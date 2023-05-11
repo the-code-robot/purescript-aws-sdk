@@ -1,10 +1,11 @@
 "use strict"
 
-const CostExplorer = require('aws-sdk/clients/costexplorer')
+import CostExplorer from 'aws-sdk/clients/costexplorer';
 
-exports.newCE = (params) =>
-  () => new CostExplorer(params)
+export function newCE(params) {
+  return () => new CostExplorer(params);
+}
 
-
-exports.getCostAndUsageImpl = (ce, params) =>
-  () => ce.getCostAndUsage(params).promise()
+export function getCostAndUsageImpl(ce, params) {
+  return () => ce.getCostAndUsage(params).promise();
+}

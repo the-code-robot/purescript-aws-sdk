@@ -1,0 +1,2 @@
+#! /usr/bin/env bash
+npx lebab --replace 'src/AWS' --transform commonjs

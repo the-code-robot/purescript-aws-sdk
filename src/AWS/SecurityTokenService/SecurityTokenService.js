@@ -1,10 +1,13 @@
 "use strict"
 
-const STS = require('aws-sdk/clients/sts')
+import STS from 'aws-sdk/clients/sts';
 
 // https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/STS.html
-exports.newSTS = (params) => () => new STS(params)
+export function newSTS(params) {
+  return () => new STS(params);
+}
 
-exports.assumeRoleImpl = (sts, params) =>
-  () => sts.assumeRole(params).promise()
+export function assumeRoleImpl(sts, params) {
+  return () => sts.assumeRole(params).promise();
+}
 

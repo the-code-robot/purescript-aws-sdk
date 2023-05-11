@@ -1,11 +1,11 @@
 "use strict"
 
-const EC2 = require('aws-sdk/clients/ec2')
+import EC2 from 'aws-sdk/clients/ec2';
 
-exports.newEC2 = (params) =>
+const newEC2 = (params) =>
   () => new EC2(params)
 
-exports.describeInstancesImpl = (ec2, filters) =>
+const describeInstancesImpl = (ec2, filters) =>
   () => {
     if (filters.length == 0) {
       return ec2.describeInstances().promise()
@@ -15,11 +15,19 @@ exports.describeInstancesImpl = (ec2, filters) =>
     }
   }
 
-exports.describeTagsImpl = (ec2, filters) =>
+const describeTagsImpl = (ec2, filters) =>
   () => ec2.describeTags({ Filters: filters }).promise()
 
-exports.describeInstanceAttributeImpl = (ec2, attribute, instanceId) =>
+const describeInstanceAttributeImpl = (ec2, attribute, instanceId) =>
   () => ec2.describeInstanceAttribute({ Attribute: attribute, InstanceId: instanceId }).promise()
 
-exports.describeInstanceTypesImpl = (ec2, instanceTypes) =>
+const describeInstanceTypesImpl = (ec2, instanceTypes) =>
   () => ec2.describeInstanceTypes({ InstanceTypes: instanceTypes }).promise()
+
+export {
+	newEC2,
+	describeInstancesImpl,
+	describeTagsImpl,
+	describeInstanceAttributeImpl,
+	describeInstanceTypesImpl,
+}

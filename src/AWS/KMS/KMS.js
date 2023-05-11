@@ -1,13 +1,19 @@
 "use strict"
 
-const KMS = require('aws-sdk/clients/kms')
+import KMS from 'aws-sdk/clients/kms';
 
-exports.newKMS = (params) => () => new KMS(params)
+export function newKMS(params) {
+    return () => new KMS(params);
+}
 
-exports.encryptImpl = (kms, params) => () => kms
-    .encrypt(params)
-    .promise()
+export function encryptImpl(kms, params) {
+    return () => kms
+        .encrypt(params)
+        .promise();
+}
 
-exports.decryptImpl = (kms, params) => () => kms
-    .decrypt(params)
-    .promise()
+export function decryptImpl(kms, params) {
+    return () => kms
+        .decrypt(params)
+        .promise();
+}

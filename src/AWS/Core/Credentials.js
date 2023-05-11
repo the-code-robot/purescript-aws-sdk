@@ -1,5 +1,5 @@
 "use strict"
 
-var AWS = require('aws-sdk')
+import AWS from 'aws-sdk';
 
-exports.newSharedIniFileCredentials = (params) => () => new AWS.SharedIniFileCredentials(params)
+export const newSharedIniFileCredentials = (params) => () => new AWS.SharedIniFileCredentials(params)

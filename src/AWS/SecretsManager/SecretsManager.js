@@ -1,9 +1,13 @@
 "use strict"
 
-const SecretsManager = require('aws-sdk/clients/secretsmanager')
+import SecretsManager from 'aws-sdk/clients/secretsmanager';
 
-exports.newSecretsManager = (params) => () => new SecretsManager(params)
+export function newSecretsManager(params) {
+    return () => new SecretsManager(params);
+}
 
-exports.getSecretValueImpl = (sm, params) => () => sm
-    .getSecretValue(params)
-    .promise()
+export function getSecretValueImpl(sm, params) {
+    return () => sm
+        .getSecretValue(params)
+        .promise();
+}
